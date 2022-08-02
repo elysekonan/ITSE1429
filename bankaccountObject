@@ -1,0 +1,53 @@
+# Main program 
+import os
+import bankaccount
+import numbers
+
+#Global variable 
+#create the bank account object
+bankAccount = bankaccount.BankAccount(200)
+userSel = 0
+
+# main method
+def main():
+    displayMenu()
+
+#display main menu
+def displayMenu():
+    os.system('cls')
+    print('Welcome to my simple ATM program')
+    print('1. Check balance')
+    print('2. Deposit money')
+    print('3. Withdraw money')
+    print('4. Exit')
+    userSel = int(input("Enter a selection "))
+    validateUserSelection(userSel)
+
+# Validate user selection
+def validateUserSelection(userSel):
+    if (userSel == 1):
+        print('Your balance is: {0}'.format(bankAccount.getBalance()))
+        gotoMainMenu()
+    elif (userSel == 2):
+        amount = int(input('Enter deposit amount: '))
+        bankAccount.depositMoney(amount)
+        print('{0} deposited into your account'.format(amount))
+        gotoMainMenu()
+    elif (userSel == 3):
+        amount = int(input('Enter amount you want to withdraw: '))
+        bankAccount.withdrawMoney(amount)
+        print('{0} withdrawn from your account'.format(amount))
+        gotoMainMenu()
+    elif (userSel == 4):
+        exit()
+
+def gotoMainMenu():
+    input('Enter any key to continue')
+    displayMenu()
+
+#exit application
+def exit():
+    print('Program completed successfully')
+    
+#call main method
+main()
